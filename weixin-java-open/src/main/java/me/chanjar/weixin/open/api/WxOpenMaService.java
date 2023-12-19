@@ -6,6 +6,7 @@ import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.open.bean.ma.WxMaPrefetchDomain;
 import me.chanjar.weixin.open.bean.ma.WxMaScheme;
 import me.chanjar.weixin.open.bean.message.WxOpenMaSubmitAuditMessage;
+import me.chanjar.weixin.open.bean.message.WxOpenMaVerifybetaweappMessage;
 import me.chanjar.weixin.open.bean.result.*;
 
 import java.io.File;
@@ -108,17 +109,22 @@ public interface WxOpenMaService extends WxMaService {
   String API_TEST_QRCODE = "https://api.weixin.qq.com/wxa/get_qrcode";
 
   /**
-   * 3. 获取授权小程序帐号的可选类目
+   * 3. 试用小程序快速认证
+   */
+  String API_VERIFYBETAWEAPP = "https://api.weixin.qq.com/wxa/verifybetaweapp";
+
+  /**
+   * 4. 获取授权小程序帐号的可选类目
    */
   String API_GET_CATEGORY = "https://api.weixin.qq.com/wxa/get_category";
 
   /**
-   * 4. 获取小程序的第三方提交代码的页面配置（仅供第三方开发者代小程序调用）
+   * 5. 获取小程序的第三方提交代码的页面配置（仅供第三方开发者代小程序调用）
    */
   String API_GET_PAGE = "https://api.weixin.qq.com/wxa/get_page";
 
   /**
-   * 5. 将第三方提交的代码包提交审核（仅供第三方开发者代小程序调用）
+   * 6. 将第三方提交的代码包提交审核（仅供第三方开发者代小程序调用）
    */
   String API_SUBMIT_AUDIT = "https://api.weixin.qq.com/wxa/submit_audit";
 
@@ -419,6 +425,15 @@ public interface WxOpenMaService extends WxMaService {
    * @throws WxErrorException the wx error exception
    */
   File getTestQrcode(String pagePath, Map<String, String> params) throws WxErrorException;
+
+  /**
+   * 试用小程序快速认证
+   *
+   * @param verifybetaweappMessage the verify mini program message
+   * @return the wx open result
+   * @throws WxErrorException the wx error exception
+   */
+  WxOpenResult verifybetaweapp(WxOpenMaVerifybetaweappMessage verifybetaweappMessage) throws WxErrorException;
 
   /**
    * 获取授权小程序帐号的可选类目
